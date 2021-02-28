@@ -1,0 +1,53 @@
+version: '3'
+services:
+  app:
+    container_name: handyman_app
+    build: .
+    ports:
+      - 8080:8080
+    restart: on-failure
+    volumes:
+      - .:/usr/src/app/
+    depends_on:
+      - handyman-postgres
+    networks:
+      - handyman
+
+
+  handyman-postgres:
+    image: postgres:latest
+    container_name: handyman_db_postgres
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - DATABASE_HOST=${DB_HOST}
+    ports:
+      - '5432:5432'
+    volumes:
+      - database_postgres:/var/lib/postgresql/data
+    networks:
+      - handyman
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    depends_on:
+      - handyman-postgres
+    ports:
+      - "5050:80"
+    networks:
+      - handyman
+    restart: unless-stopped
+
+volumes:
+  api:
+  database_postgres:
+
+# Networks to be created to facilitate communication between containers
+networks:
+  handyman:
+    driver: bridge
