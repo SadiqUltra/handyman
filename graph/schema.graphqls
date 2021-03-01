@@ -1,0 +1,49 @@
+type Service {
+    id: ID!
+    title: String!
+    description: String!
+    price: Float!
+    user: User!
+}
+
+type User {
+    id: ID!
+    name: String!
+    phone: String!
+    city: String!
+    address: String!
+}
+
+type Query {
+    services: [Service!]!
+}
+
+input NewService {
+    title: String!
+    description: String!
+    price: Float!
+}
+
+input RefreshTokenInput{
+    token: String!
+}
+
+input NewUser {
+    username: String!
+    password: String!
+    phone: String!
+    city: String!
+    address: String!
+}
+
+input Login {
+    username: String!
+    password: String!
+}
+
+type Mutation {
+    createUser(input: NewUser!): String!
+    createService(input: NewService!): Service!
+    login(input: Login!): String!
+    refreshToken(input: RefreshTokenInput!): String!
+}
