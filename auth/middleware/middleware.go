@@ -6,7 +6,7 @@ import (
 	"strconv"
 
 	"github.com/sadiqultra/handyman/auth/jwt"
-	"github.com/sadiqultra/handyman/model/users"
+	"github.com/sadiqultra/handyman/repository/users"
 )
 
 var userCtxKey = &contextKey{"user"}

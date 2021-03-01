@@ -1,0 +1,28 @@
+apiVersion: apps/v1 
+kind: Deployment                                  # Type of the kubernetes resource
+metadata:
+  name: handyman-app-postgres                     # Name of the Kubernetes resource
+  labels:
+    app: handyman-app-postgres
+spec:
+  replicas: 1                                     # Number of pods to run at any given time
+  selector:
+    matchLabels: 
+      app: handyman-app-postgres                  # This deployment applies to any Pods matching the specified label
+  template:                                       # This deployment will create a set of pods using the configurations in this template
+    metadata:
+      labels:                                     # The labels that will be applied to all of the pods in this deployment
+        app: handyman-app-postgres
+    spec:                                         # Spec for the container which will run in the Pod
+      containers:
+      - name: handyman-app-postgres
+        image: victorsteven/fullstack:1.3.2       # The image we are getting from dockerhub
+        imagePullPolicy: IfNotPresent             # If we have not pulled it before, get it from dockerhub
+        ports:
+          - name: http
+            containerPort: 8080                   # Should match the port number that the Go application listens on
+        envFrom:
+          - secretRef:
+              name: postgres-secret               # Name of the secret environmental variable file to load
+        
+

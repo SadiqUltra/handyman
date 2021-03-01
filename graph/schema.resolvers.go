@@ -12,8 +12,8 @@ import (
 	"github.com/sadiqultra/handyman/auth/middleware"
 	"github.com/sadiqultra/handyman/graph/generated"
 	"github.com/sadiqultra/handyman/graph/model"
-	"github.com/sadiqultra/handyman/model/services"
-	"github.com/sadiqultra/handyman/model/users"
+	"github.com/sadiqultra/handyman/repository/services"
+	"github.com/sadiqultra/handyman/repository/users"
 	"github.com/sadiqultra/handyman/utils"
 )
 

@@ -2,7 +2,7 @@ package services
 
 import (
 	database "github.com/sadiqultra/handyman/db/migrations/postgres"
-	"github.com/sadiqultra/handyman/model/users"
+	"github.com/sadiqultra/handyman/repository/users"
 	"log"
 )
 

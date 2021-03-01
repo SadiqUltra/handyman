@@ -1,0 +1,14 @@
+apiVersion: v1  
+kind: Service                                 # Type of the kubernetes resource
+metadata:
+  name: handyman-app-postgres                 # Name of the Kubernetes resource
+  labels:                                     # Labels that will be applied to the resource
+    app: handyman-app-postgres
+spec:
+  type: NodePort                              # Gives each node an external IP that’s accessible from outside the cluster and also opens a Port.
+  selector:
+    app: handyman-app-postgres                # Selects any Pod with labels `app=handyman-app-postgres`
+  ports: 
+  - name: http
+    port: 8080
+    targetPort: 8080
