@@ -5,7 +5,7 @@ metadata:
   labels:
     app: handyman-app-postgres
 spec:
-  replicas: 1                                     # Number of pods to run at any given time
+  replicas: 6                                     # Number of pods to run at any given time
   selector:
     matchLabels: 
       app: handyman-app-postgres                  # This deployment applies to any Pods matching the specified label
